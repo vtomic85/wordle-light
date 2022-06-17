@@ -8,8 +8,7 @@ const Board = ({ secretWord }) => {
   const [storedAttempts, setStoredAttempts] = useState([]);
   const [results, setResults] = useState([]);
   const [win, setWin] = useState(false);
-
-  const secret = "AUDIO";
+  const secret = secretWord;
 
   const checkResult = () => {
     let secretChecked = [false, false, false, false, false];
@@ -18,14 +17,16 @@ const Board = ({ secretWord }) => {
     let correct = 0;
     // Detect correct guesses
     for (let i = 0; i < 5; i++) {
-      if (secret.charAt(i) === currentAttempt[i]) {
+      if (secret.charAt(i).toLowerCase() === currentAttempt[i].toLowerCase()) {
         secretChecked[i] = true;
         attemptChecked[i] = true;
         result[i] = "O";
         correct++;
       } else {
         for (let j = 0; j < 5; j++) {
-          if (secret.charAt(i) === currentAttempt[j]) {
+          if (
+            secret.charAt(i).toLowerCase() === currentAttempt[j].toLowerCase()
+          ) {
             secretChecked[i] = true;
             attemptChecked[j] = true;
             result[j] = "X";
@@ -58,8 +59,8 @@ const Board = ({ secretWord }) => {
           ...prevState,
           currentAttempt.join(""),
         ]);
-        setCurrentAttempt([]);
         checkResult();
+        setCurrentAttempt([]);
       }
     }
   };
@@ -73,7 +74,6 @@ const Board = ({ secretWord }) => {
 
   return (
     <div className="board">
-      {secret}
       <div className="currentAttempt">{currentAttempt}</div>
       <div className="storedAttempts">
         <Row attempt={storedAttempts[0]} result={results[0]} />

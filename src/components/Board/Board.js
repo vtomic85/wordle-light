@@ -33,8 +33,10 @@ const Board = () => {
       } else {
         for (let j = 0; j < 5; j++) {
           if (
+            secretChecked[i] === false &&
+            attemptChecked[j] === false &&
             secretWord.charAt(i).toLowerCase() ===
-            currentAttempt[j].toLowerCase()
+              currentAttempt[j].toLowerCase()
           ) {
             secretChecked[i] = true;
             attemptChecked[j] = true;
@@ -97,6 +99,7 @@ const Board = () => {
   return (
     <>
       <div className="board">
+        {secretWord}
         <div className="currentAttempt">{currentAttempt}</div>
         <div className="storedAttempts">
           <Row attempt={storedAttempts[0]} result={results[0]} />

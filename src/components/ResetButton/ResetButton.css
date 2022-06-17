@@ -1,0 +1,24 @@
+.resetButtonHolder {
+  width: 100%;
+  text-align: center;
+  margin: 5px;
+  padding: 10px;
+}
+
+.resetButton {
+  width: 300px;
+  height: 40px;
+  background-color: #00ff00;
+  font-weight: bold;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+.resetButton:hover {
+  background-color: #02c502;
+  cursor: pointer;
+}
+
+.resetButton:active {
+  background-color: #00ff00;
+}

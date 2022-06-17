@@ -80,23 +80,34 @@ const Board = ({ secretWord }) => {
     };
   }, [currentAttempt]);
 
+  const onNewGame = () => {
+    setCurrentAttempt([]);
+    setStoredAttempts([]);
+    setResults([]);
+    setWin(false);
+    setLose(false);
+  };
+
   return (
-    <div className="board">
-      {secretWord}
-      <div className="currentAttempt">{currentAttempt}</div>
-      <div className="storedAttempts">
-        <Row attempt={storedAttempts[0]} result={results[0]} />
-        <Row attempt={storedAttempts[1]} result={results[1]} />
-        <Row attempt={storedAttempts[2]} result={results[2]} />
-        <Row attempt={storedAttempts[3]} result={results[3]} />
-        <Row attempt={storedAttempts[4]} result={results[4]} />
-        <Row attempt={storedAttempts[5]} result={results[5]} />
+    <>
+      <div className="board">
+        <div className="currentAttempt">{currentAttempt}</div>
+        <div className="storedAttempts">
+          <Row attempt={storedAttempts[0]} result={results[0]} />
+          <Row attempt={storedAttempts[1]} result={results[1]} />
+          <Row attempt={storedAttempts[2]} result={results[2]} />
+          <Row attempt={storedAttempts[3]} result={results[3]} />
+          <Row attempt={storedAttempts[4]} result={results[4]} />
+          <Row attempt={storedAttempts[5]} result={results[5]} />
+        </div>
       </div>
-      <div className="results"></div>
-      {win && <WinMessage />}
-      {lose && <LoseMessage secretWord={secretWord} />}
-      {(win || lose) && <ResetButton />}
-    </div>
+      <div>
+        <div className="results"></div>
+        {win && <WinMessage />}
+        {lose && <LoseMessage secretWord={secretWord} />}
+        {(win || lose) && <ResetButton onNewGame={onNewGame} />}
+      </div>
+    </>
   );
 };
 export default Board;

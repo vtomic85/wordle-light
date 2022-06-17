@@ -1,3 +1,7 @@
+.board {
+  margin: 10px;
+}
+
 .currentAttempt {
   height: 40px;
   line-height: 40px;

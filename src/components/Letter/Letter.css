@@ -1,5 +1,6 @@
 .letter {
   display: inline-block;
+  background-color: lightgray;
   height: 40px;
   width: 40px;
   font-size: 24px;

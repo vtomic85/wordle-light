@@ -3,6 +3,7 @@ import { WORDS } from "../../words";
 import LoseMessage from "../LoseMessage/LoseMessage";
 import ResetButton from "../ResetButton/ResetButton";
 import Row from "../Row/Row";
+import VirtualKeyboard from "../VirtualKeyboard/VirtualKeyboard";
 import WinMessage from "../WinMessage/WinMessage";
 import "./Board.css";
 
@@ -96,6 +97,45 @@ const Board = () => {
     setLose(false);
   };
 
+  const onKeyClicked = (key) => {
+    switch (key) {
+      case "SUBMIT":
+        if (!win && !lose && storedAttempts.length < 6) {
+          if (currentAttempt.length === 5) {
+            setStoredAttempts((prevState) => [
+              ...prevState,
+              currentAttempt.join(""),
+            ]);
+            checkResult();
+            setCurrentAttempt([]);
+          }
+        }
+        break;
+      case "BACKSPACE":
+        if (
+          !win &&
+          !lose &&
+          storedAttempts.length < 6 &&
+          currentAttempt.length > 0
+        ) {
+          setCurrentAttempt((prevState) =>
+            prevState.slice(0, currentAttempt.length - 1)
+          );
+        }
+        break;
+      default:
+        if (
+          !win &&
+          !lose &&
+          storedAttempts.length < 6 &&
+          currentAttempt.length < 5
+        ) {
+          setCurrentAttempt((prevState) => [...prevState, key.toUpperCase()]);
+        }
+        break;
+    }
+  };
+
   return (
     <>
       <div className="board">
@@ -109,6 +149,7 @@ const Board = () => {
           <Row attempt={storedAttempts[5]} result={results[5]} />
         </div>
       </div>
+      <VirtualKeyboard onKeyClicked={onKeyClicked} />
       <div>
         <div className="results"></div>
         {win && <WinMessage />}

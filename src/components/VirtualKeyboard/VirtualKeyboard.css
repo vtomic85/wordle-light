@@ -1,0 +1,37 @@
+.keyboardContainer {
+  background-color: gray;
+  width: fit-content;
+  margin: 0 auto;
+  padding: 3px;
+  border-radius: 3px;
+}
+
+.keyboardKey {
+  border-radius: 2px;
+  margin: 1px;
+  background-color: lightgray;
+  cursor: pointer;
+}
+
+.keyboardKey:hover {
+  background-color: gray;
+}
+
+.backspace {
+  background-color: red;
+  color: white;
+}
+
+.backspace:hover {
+  background-color: lightcoral;
+}
+
+.submit {
+  width: 80%;
+  background-color: greenyellow;
+  color: black;
+}
+
+.submit:hover {
+  background-color: lightgreen;
+}

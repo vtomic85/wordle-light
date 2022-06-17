@@ -1,0 +1,20 @@
+.letter {
+  display: inline-block;
+  height: 40px;
+  width: 40px;
+  font-size: 24px;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 8px;
+  margin: 2px;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.green {
+  background-color: greenyellow;
+}

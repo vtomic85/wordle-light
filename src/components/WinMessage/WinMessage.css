@@ -1,0 +1,14 @@
+.winMessageContainer {
+  display: block;
+  width: 60%;
+  margin: 0 auto;
+}
+
+.winMessage {
+  border: 6px double green;
+  color: green;
+  padding: 5px;
+  text-align: center;
+  margin: 0 auto;
+  font-size: 36px;
+}

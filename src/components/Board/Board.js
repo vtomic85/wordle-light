@@ -86,6 +86,7 @@ const Board = () => {
   }, [currentAttempt]);
 
   const onNewGame = () => {
+    setSecretWord(WORDS[Math.floor(Math.random() * WORDS.length)]);
     setCurrentAttempt([]);
     setStoredAttempts([]);
     setResults([]);

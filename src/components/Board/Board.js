@@ -1,11 +1,15 @@
 import { useEffect, useState } from "react";
+import { WORDS } from "../../words";
 import LoseMessage from "../LoseMessage/LoseMessage";
 import ResetButton from "../ResetButton/ResetButton";
 import Row from "../Row/Row";
 import WinMessage from "../WinMessage/WinMessage";
 import "./Board.css";
 
-const Board = ({ secretWord }) => {
+const Board = () => {
+  const [secretWord, setSecretWord] = useState(
+    WORDS[Math.floor(Math.random() * WORDS.length)]
+  );
   const [currentAttempt, setCurrentAttempt] = useState([]);
   const [storedAttempts, setStoredAttempts] = useState([]);
   const [results, setResults] = useState([]);
@@ -78,6 +82,7 @@ const Board = ({ secretWord }) => {
     return () => {
       window.removeEventListener("keyup", onLetterTyped);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentAttempt]);
 
   const onNewGame = () => {

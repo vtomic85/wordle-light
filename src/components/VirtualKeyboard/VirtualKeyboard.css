@@ -1,6 +1,6 @@
 .keyboardContainer {
   background-color: gray;
-  width: fit-content;
+  width: 100%;
   margin: 0 auto;
   padding: 3px;
   border-radius: 3px;
@@ -27,7 +27,8 @@
 }
 
 .submit {
-  width: 80%;
+  width: 50%;
+  height: 30px;
   background-color: greenyellow;
   color: black;
 }

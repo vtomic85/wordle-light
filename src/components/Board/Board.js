@@ -71,10 +71,7 @@ const Board = () => {
       }
       // Enter
       if (currentAttempt.length === 5 && e.keyCode === 13) {
-        setStoredAttempts((prevState) => [
-          ...prevState,
-          currentAttempt.join(""),
-        ]);
+        addCurrentAttemptToState();
         for (let i = 0; i < 5; i++) {
           if (!usedLetters.includes(currentAttempt[i])) {
             setUsedLetters((prevState) => [...prevState, currentAttempt[i]]);
@@ -109,10 +106,7 @@ const Board = () => {
       case "SUBMIT":
         if (!win && !lose && storedAttempts.length < 6) {
           if (currentAttempt.length === 5) {
-            setStoredAttempts((prevState) => [
-              ...prevState,
-              currentAttempt.join(""),
-            ]);
+            addCurrentAttemptToState();
             checkResult();
             setCurrentAttempt([]);
           }
@@ -141,6 +135,10 @@ const Board = () => {
         }
         break;
     }
+  };
+
+  const addCurrentAttemptToState = () => {
+    setStoredAttempts((prevState) => [...prevState, currentAttempt.join("")]);
   };
 
   return (

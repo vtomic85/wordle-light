@@ -5,6 +5,7 @@ const VirtualKeyboardRow = ({ keys, usedLetters, onKeyClicked }) => {
       {keys.map((key, i) =>
         key === "BACK" ? (
           <button
+            key={i}
             className="keyboardKey backspace"
             onClick={() => onKeyClicked("BACKSPACE")}
           >
@@ -12,13 +13,18 @@ const VirtualKeyboardRow = ({ keys, usedLetters, onKeyClicked }) => {
           </button>
         ) : key === "SUBMIT" ? (
           <button
+            key={i}
             className="keyboardKey submit"
             onClick={() => onKeyClicked("SUBMIT")}
           >
             SUBMIT
           </button>
         ) : (
-                      <button className={`keyboardKey ${usedLetters.includes(key) ? "used" : ""}`} onClick={() => onKeyClicked(key)}>
+          <button
+            key={i}
+            className={`keyboardKey ${usedLetters.includes(key) ? "used" : ""}`}
+            onClick={() => onKeyClicked(key)}
+          >
             {key}
           </button>
         )

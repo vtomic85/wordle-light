@@ -65,20 +65,11 @@ const Board = () => {
       }
       // Backspace
       if (currentAttempt.length > 0 && e.keyCode === 8) {
-        setCurrentAttempt((prevState) =>
-          prevState.slice(0, currentAttempt.length - 1)
-        );
+        doBackspaceAction();
       }
       // Enter
       if (currentAttempt.length === 5 && e.keyCode === 13) {
-        addCurrentAttemptToState();
-        for (let i = 0; i < 5; i++) {
-          if (!usedLetters.includes(currentAttempt[i])) {
-            setUsedLetters((prevState) => [...prevState, currentAttempt[i]]);
-          }
-        }
-        checkResult();
-        setCurrentAttempt([]);
+        doEnterAction();
       }
     }
   };
@@ -104,25 +95,10 @@ const Board = () => {
   const onKeyClicked = (key) => {
     switch (key) {
       case "SUBMIT":
-        if (!win && !lose && storedAttempts.length < 6) {
-          if (currentAttempt.length === 5) {
-            addCurrentAttemptToState();
-            checkResult();
-            setCurrentAttempt([]);
-          }
-        }
+        doEnterAction();
         break;
       case "BACKSPACE":
-        if (
-          !win &&
-          !lose &&
-          storedAttempts.length < 6 &&
-          currentAttempt.length > 0
-        ) {
-          setCurrentAttempt((prevState) =>
-            prevState.slice(0, currentAttempt.length - 1)
-          );
-        }
+        doBackspaceAction();
         break;
       default:
         if (
@@ -137,8 +113,40 @@ const Board = () => {
     }
   };
 
-  const addCurrentAttemptToState = () => {
+  const doEnterAction = () => {
+    if (!win && !lose && storedAttempts.length < 6) {
+      if (currentAttempt.length === 5) {
+        addCurrentAttemptToStored();
+        updateUsedLetters();
+        checkResult();
+        setCurrentAttempt([]);
+      }
+    }
+  };
+
+  const doBackspaceAction = () => {
+    if (
+      !win &&
+      !lose &&
+      storedAttempts.length < 6 &&
+      currentAttempt.length > 0
+    ) {
+      setCurrentAttempt((prevState) =>
+        prevState.slice(0, currentAttempt.length - 1)
+      );
+    }
+  };
+
+  const addCurrentAttemptToStored = () => {
     setStoredAttempts((prevState) => [...prevState, currentAttempt.join("")]);
+  };
+
+  const updateUsedLetters = () => {
+    for (let i = 0; i < 5; i++) {
+      if (!usedLetters.includes(currentAttempt[i])) {
+        setUsedLetters((prevState) => [...prevState, currentAttempt[i]]);
+      }
+    }
   };
 
   return (

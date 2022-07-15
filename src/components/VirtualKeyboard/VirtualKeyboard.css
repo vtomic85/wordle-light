@@ -16,6 +16,7 @@
 
 .keyboardKey:hover {
   background-color: gray;
+  color: lightgray;
 }
 
 .keyboardKey.used {

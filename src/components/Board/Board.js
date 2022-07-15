@@ -14,6 +14,7 @@ const Board = () => {
   const [currentAttempt, setCurrentAttempt] = useState([]);
   const [storedAttempts, setStoredAttempts] = useState([]);
   const [results, setResults] = useState([]);
+  const [usedLetters, setUsedLetters] = useState([]);
   const [win, setWin] = useState(false);
   const [lose, setLose] = useState(false);
 
@@ -74,6 +75,11 @@ const Board = () => {
           ...prevState,
           currentAttempt.join(""),
         ]);
+        for (let i = 0; i < 5; i++) {
+          if (!usedLetters.includes(currentAttempt[i])) {
+            setUsedLetters((prevState) => [...prevState, currentAttempt[i]]);
+          }
+        }
         checkResult();
         setCurrentAttempt([]);
       }
@@ -92,6 +98,7 @@ const Board = () => {
     setSecretWord(WORDS[Math.floor(Math.random() * WORDS.length)]);
     setCurrentAttempt([]);
     setStoredAttempts([]);
+    setUsedLetters([]);
     setResults([]);
     setWin(false);
     setLose(false);
@@ -149,7 +156,7 @@ const Board = () => {
           <Row attempt={storedAttempts[5]} result={results[5]} />
         </div>
       </div>
-      <VirtualKeyboard onKeyClicked={onKeyClicked} />
+      <VirtualKeyboard onKeyClicked={onKeyClicked} usedLetters={usedLetters} />
       <div>
         <div className="results"></div>
         {win && <WinMessage />}
